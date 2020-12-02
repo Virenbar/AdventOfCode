@@ -4,15 +4,9 @@
 	Private Numbers As List(Of Integer)
 
 	Public Sub New()
-		MyBase.New()
+		MyBase.New(1)
 		Numbers = LoadInts()
 	End Sub
-
-	Protected Overrides ReadOnly Property DayN As Integer
-		Get
-			Return 1
-		End Get
-	End Property
 
 	Protected Overrides Function SolvePart1() As Object
 		Return GetSum(2)

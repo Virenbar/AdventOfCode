@@ -1,12 +1,13 @@
 ﻿Public MustInherit Class BaseDay
-	Protected MustOverride ReadOnly Property DayN As Integer
+	Protected ReadOnly Property DayN As Integer
 	Protected StringList As List(Of String)
 
-	Protected Sub New()
+	Protected Sub New(d As Integer)
+		DayN = d
 		StringList = LoadFile()
 	End Sub
 
-	Protected ReadOnly Property Day(Optional test As Boolean = False) As String
+	Protected ReadOnly Property Day() As String
 		Get
 			Return $"Day{DayN}"
 		End Get
