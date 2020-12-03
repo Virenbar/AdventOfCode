@@ -21,22 +21,26 @@
 
   <ItemGroup>
     <None Remove="favicon.ico" />
+    <None Remove="InputTest\Day3.txt" />
     <None Remove="Input\Day1.txt" />
     <None Remove="Input\Day2.txt" />
+    <None Remove="Input\Day3.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <Content Include="InputTest\Day3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Input\Day3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Input\Day2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Input\Day1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="InputTest\" />
   </ItemGroup>
 
   <ItemGroup>
