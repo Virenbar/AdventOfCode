@@ -2,14 +2,15 @@
 	Protected ReadOnly Property DayN As Integer
 	Protected StringList As List(Of String)
 	Protected StringListTest As List(Of String)
+	Protected Raw As String
+	Protected RawTest As String
 
 	Protected Sub New(d As Integer)
 		DayN = d
-		StringList = LoadFile()
-		StringListTest = LoadFile(True)
+		LoadFile()
 	End Sub
 
-	Protected ReadOnly Property Day() As String
+	Public ReadOnly Property Day() As String
 		Get
 			Return $"Day{DayN}"
 		End Get
@@ -32,9 +33,14 @@
 		End Get
 	End Property
 
-	Private Function LoadFile(Optional test As Boolean = False) As List(Of String)
-		Return IO.File.ReadAllLines(InputPath(test)).ToList()
-	End Function
+	Private Sub LoadFile()
+		Raw = IO.File.ReadAllText(InputPath)
+		StringList = IO.File.ReadAllLines(InputPath).ToList()
+		If IO.File.Exists(InputPath(True)) Then
+			RawTest = IO.File.ReadAllText(InputPath(True))
+			StringListTest = IO.File.ReadAllLines(InputPath(True)).ToList()
+		End If
+	End Sub
 
 	Protected Function LoadInts() As List(Of Integer)
 		Return StringList.Select(Function(x) Integer.Parse(x)).ToList
