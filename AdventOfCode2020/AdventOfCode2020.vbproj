@@ -23,10 +23,12 @@
     <None Remove="favicon.ico" />
     <None Remove="InputTest\Day3.txt" />
     <None Remove="InputTest\Day4.txt" />
+    <None Remove="InputTest\Day5.txt" />
     <None Remove="Input\Day1.txt" />
     <None Remove="Input\Day2.txt" />
     <None Remove="Input\Day3.txt" />
     <None Remove="Input\Day4.txt" />
+    <None Remove="Input\Day5.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +37,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="InputTest\Day4.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InputTest\Day5.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Input\Day5.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Input\Day4.txt">

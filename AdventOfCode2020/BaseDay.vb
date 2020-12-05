@@ -4,6 +4,7 @@
 	Protected StringListTest As List(Of String)
 	Protected Raw As String
 	Protected RawTest As String
+	Private SP As New Stopwatch()
 
 	Protected Sub New(d As Integer)
 		DayN = d
@@ -17,14 +18,26 @@
 	End Property
 
 	Public Function Solve() As Result
-		Dim T1 = TestPart1()
-		Dim T2 = TestPart2()
-		If Not (T1 And T2) Then Return New Result(If(T1, "", "Test1 failed"), If(T2, "", "Test2 failed"))
+		Dim T1 = TestPart1(), T2 = TestPart2()
+		If Not (T1 And T2) Then
+			Dim RT = New Result With {
+				.P1 = If(T1, "", "Test1 failed"),
+				.P2 = If(T2, "", "Test2 failed")
+			}
+			Return RT
+		End If
 
+		Dim R = New Result()
+		SP.Restart()
 		Dim R1 = SolvePart1()
+		SP.Stop()
+		R.P1 = $"Part1: {R1} ({SP.Elapsed}) "
 
+		SP.Restart()
 		Dim R2 = SolvePart2()
-		Return New Result(R1, R2)
+		SP.Stop()
+		R.P2 = $"Part2: {R2} ({SP.Elapsed}) "
+		Return R
 	End Function
 
 	Protected ReadOnly Property InputPath(Optional test As Boolean = False) As String
