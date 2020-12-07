@@ -2,6 +2,7 @@
 	Protected ReadOnly Property DayN As Integer
 	Protected StringList As List(Of String)
 	Protected StringListTest As List(Of String)
+	Protected StringListTestA As List(Of String)
 	Protected Raw As String
 	Protected RawTest As String
 	Private SP As New Stopwatch()
@@ -40,9 +41,9 @@
 		Return R
 	End Function
 
-	Protected ReadOnly Property InputPath(Optional test As Boolean = False) As String
+	Protected ReadOnly Property InputPath(Optional test As Boolean = False, Optional test2 As Boolean = False) As String
 		Get
-			Return $"{If(test, "InputTest", "Input")}/{Day}.txt"
+			Return $"{If(test, "InputTest", "Input")}/{Day}{If(test2, "A", "")}.txt"
 		End Get
 	End Property
 
@@ -52,6 +53,9 @@
 		If IO.File.Exists(InputPath(True)) Then
 			RawTest = IO.File.ReadAllText(InputPath(True))
 			StringListTest = IO.File.ReadAllLines(InputPath(True)).ToList()
+		End If
+		If IO.File.Exists(InputPath(True, True)) Then
+			StringListTestA = IO.File.ReadAllLines(InputPath(True, True)).ToList()
 		End If
 	End Sub
 
