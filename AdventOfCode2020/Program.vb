@@ -3,7 +3,7 @@ Imports System
 Module Program
 
 	Sub Main(args As String())
-		Dim Day = New Day7()
+		Dim Day = New Day8()
 		Dim R = Day.Solve()
 		Console.WriteLine($"{R.P1} {R.P2}")
 		Console.Read()
