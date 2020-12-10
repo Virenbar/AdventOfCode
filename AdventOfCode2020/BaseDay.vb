@@ -63,8 +63,12 @@
 		Return StringList.Select(Function(x) Integer.Parse(x)).ToList
 	End Function
 
+	Protected Function LoadInts(list As List(Of String)) As List(Of Integer)
+		Return list.Select(AddressOf Integer.Parse).ToList
+	End Function
+
 	Protected Function LoadLongs(list As List(Of String)) As List(Of Long)
-		Return list.Select(Function(x) Long.Parse(x)).ToList
+		Return list.Select(AddressOf Long.Parse).ToList
 	End Function
 
 	Protected MustOverride Function SolvePart1() As Object
