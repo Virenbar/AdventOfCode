@@ -24,6 +24,8 @@
     <None Remove="InputTest\Day10.txt" />
     <None Remove="InputTest\Day11.txt" />
     <None Remove="InputTest\Day12.txt" />
+    <None Remove="InputTest\Day13.txt" />
+    <None Remove="InputTest\Day14.txt" />
     <None Remove="InputTest\Day3.txt" />
     <None Remove="InputTest\Day4.txt" />
     <None Remove="InputTest\Day5.txt" />
@@ -36,6 +38,8 @@
     <None Remove="Input\Day10.txt" />
     <None Remove="Input\Day11.txt" />
     <None Remove="Input\Day12.txt" />
+    <None Remove="Input\Day13.txt" />
+    <None Remove="Input\Day14.txt" />
     <None Remove="Input\Day2.txt" />
     <None Remove="Input\Day3.txt" />
     <None Remove="Input\Day4.txt" />
@@ -48,6 +52,12 @@
 
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <Content Include="InputTest\Day14.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InputTest\Day13.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="InputTest\Day12.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -81,6 +91,9 @@
     <Content Include="InputTest\Day9.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Input\Day13.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Input\Day12.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -88,6 +101,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Input\Day10.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Input\Day14.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Input\Day9.txt">
