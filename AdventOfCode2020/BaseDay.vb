@@ -71,6 +71,10 @@
 		Return list.Select(AddressOf Long.Parse).ToList
 	End Function
 
+	Protected Function LoadInts(str As String) As List(Of Integer)
+		Return str.Split(",").Select(AddressOf Integer.Parse).ToList()
+	End Function
+
 	Protected MustOverride Function SolvePart1() As Object
 
 	Protected MustOverride Function SolvePart2() As Object
