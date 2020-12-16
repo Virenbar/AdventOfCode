@@ -5,6 +5,7 @@
 	Protected StringListTestA As List(Of String)
 	Protected Raw As String
 	Protected RawTest As String
+	Protected RawTestA As String
 	Private SP As New Stopwatch()
 
 	Protected Sub New(d As Integer)
@@ -55,6 +56,7 @@
 			StringListTest = IO.File.ReadAllLines(InputPath(True)).ToList()
 		End If
 		If IO.File.Exists(InputPath(True, True)) Then
+			RawTestA = IO.File.ReadAllText(InputPath(True, True))
 			StringListTestA = IO.File.ReadAllLines(InputPath(True, True)).ToList()
 		End If
 	End Sub

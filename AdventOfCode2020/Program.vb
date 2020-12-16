@@ -1,7 +1,7 @@
 Module Program
 
 	Sub Main(args As String())
-		Dim Day = New Day15()
+		Dim Day = New Day16()
 		Dim R = Day.Solve()
 		Console.WriteLine($"{R.P1} {R.P2}")
 		Console.Read()

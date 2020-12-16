@@ -13,4 +13,14 @@ Module Extensions
 		I.Operation = If(I.Operation = Operation.jmp, Operation.nop, Operation.jmp)
 	End Sub
 
+	<Extension>
+	Public Function Multiply(E As IEnumerable(Of Long)) As Long
+		Return E.Aggregate(Of Long)(1, Function(agr, i) agr * i)
+	End Function
+
+	<Extension>
+	Public Function Multiply(Of T)(E As IEnumerable(Of T), selector As Func(Of T, Long)) As Long
+		Return E.Aggregate(Of Long)(1, Function(agr, i) agr * selector(i))
+	End Function
+
 End Module
