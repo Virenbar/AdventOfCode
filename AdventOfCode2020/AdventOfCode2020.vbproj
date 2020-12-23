@@ -40,6 +40,7 @@
     <None Remove="InputTest\Day21.txt" />
     <None Remove="InputTest\Day22.txt" />
     <None Remove="InputTest\Day23.txt" />
+    <None Remove="InputTest\Day24.txt" />
     <None Remove="InputTest\Day3.txt" />
     <None Remove="InputTest\Day4.txt" />
     <None Remove="InputTest\Day5.txt" />
@@ -64,6 +65,7 @@
     <None Remove="Input\Day21.txt" />
     <None Remove="Input\Day22.txt" />
     <None Remove="Input\Day23.txt" />
+    <None Remove="Input\Day24.txt" />
     <None Remove="Input\Day3.txt" />
     <None Remove="Input\Day4.txt" />
     <None Remove="Input\Day5.txt" />
@@ -112,6 +114,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="InputTest\Day19.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InputTest\Day24.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="InputTest\Day23.txt">
@@ -187,6 +192,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Input\Day23.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Input\Day24.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Input\Day9.txt">
