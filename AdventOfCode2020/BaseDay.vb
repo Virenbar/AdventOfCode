@@ -61,10 +61,6 @@
 		End If
 	End Sub
 
-	Protected Function LoadInts() As List(Of Integer)
-		Return StringList.Select(Function(x) Integer.Parse(x)).ToList
-	End Function
-
 	Protected Function LoadInts(list As List(Of String)) As List(Of Integer)
 		Return list.Select(AddressOf Integer.Parse).ToList
 	End Function

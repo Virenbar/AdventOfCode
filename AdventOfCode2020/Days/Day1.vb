@@ -5,7 +5,7 @@
 
 	Public Sub New()
 		MyBase.New(1)
-		Numbers = LoadInts()
+		Numbers = LoadInts(StringList)
 	End Sub
 
 	Protected Overrides Function SolvePart1() As Object
