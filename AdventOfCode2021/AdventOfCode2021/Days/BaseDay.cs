@@ -13,10 +13,7 @@ namespace AdventOfCode2021.Days
 		protected string RawTest, RawTestA;
 		private readonly Stopwatch SW = new();
 
-		public BaseDay(int day)
-		{
-			Day = day;
-		}
+		public BaseDay(int day) => Day = day;
 
 		public int Day { get; private set; }
 

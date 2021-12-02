@@ -7,7 +7,7 @@ namespace AdventOfCode2021
 	{
 		private static void Main()
 		{
-			var Day = new Day01();
+			var Day = new Day02();
 			var (PartOne, PartTwo) = Day.Solve();
 			Console.WriteLine(PartOne);
 			Console.WriteLine(PartTwo);

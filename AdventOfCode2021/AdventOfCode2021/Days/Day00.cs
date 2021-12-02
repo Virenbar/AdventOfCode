@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode2021.Days
 {
-	public class Day02 : BaseDay
+	public class Day00 : BaseDay
 	{
-		public Day02() : base(2) { }
+		public Day00() : base(0) { }
 
 		protected override string SolvePartOne() => "";
 
