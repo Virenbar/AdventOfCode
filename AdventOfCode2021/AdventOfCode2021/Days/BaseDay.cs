@@ -25,7 +25,7 @@ namespace AdventOfCode2021.Days
 			if (!(T1 && T2))
 			{
 				var P1 = T1 ? "passed" : "failed";
-				var P2 = T1 ? "passed" : "failed";
+				var P2 = T2 ? "passed" : "failed";
 				return ($"Test One: {P1}", $"Test Two: {P2}");
 			}
 

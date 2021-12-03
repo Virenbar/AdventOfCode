@@ -72,9 +72,9 @@ namespace AdventOfCode2021.Days
 
 		private class Position
 		{
+			public int Aim { get; set; }
 			public int Depth { get; set; }
 			public int HPos { get; set; }
-			public int Aim { get; set; }
 		}
 	}
 }
