@@ -8,6 +8,8 @@ namespace AdventOfCode2021.Days
 {
 	public class Day00 : BaseDay
 	{
+		#region Overrides
+
 		public Day00() : base(0) { }
 
 		protected override string SolvePartOne()
@@ -43,5 +45,7 @@ namespace AdventOfCode2021.Days
 		{
 			return 0;
 		}
+
+		#endregion Overrides
 	}
 }

@@ -5,6 +5,8 @@ namespace AdventOfCode2021.Days
 {
 	public class Day01 : BaseDay
 	{
+		#region Overrides
+
 		public Day01() : base(1) { }
 
 		protected override string SolvePartOne()
@@ -30,6 +32,8 @@ namespace AdventOfCode2021.Days
 			var M = LinesTest.ToIntList();
 			return CountIncreasesSum(M) == 5;
 		}
+
+		#endregion Overrides
 
 		private static int CountIncreases(List<int> Measurments)
 		{

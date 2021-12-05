@@ -6,6 +6,8 @@ namespace AdventOfCode2021.Days
 {
 	public class Day04 : BaseDay
 	{
+		#region Overrides
+
 		public Day04() : base(4) { }
 
 		protected override string SolvePartOne()
@@ -31,6 +33,8 @@ namespace AdventOfCode2021.Days
 			var R = new Bingo(RawTest).PlayLast();
 			return R == 1924;
 		}
+
+		#endregion Overrides
 
 		private class Bingo
 		{

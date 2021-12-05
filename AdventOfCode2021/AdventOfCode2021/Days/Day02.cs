@@ -4,6 +4,8 @@ namespace AdventOfCode2021.Days
 {
 	public class Day02 : BaseDay
 	{
+		#region Overrides
+
 		public Day02() : base(2) { }
 
 		protected override string SolvePartOne()
@@ -29,6 +31,8 @@ namespace AdventOfCode2021.Days
 			var R = CalculateFixed(LinesTest);
 			return R == 900;
 		}
+
+		#endregion Overrides
 
 		private static int Calculate(List<string> commands)
 		{
