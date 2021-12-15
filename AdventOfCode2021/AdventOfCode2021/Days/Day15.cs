@@ -1,9 +1,6 @@
 ﻿using AdventOfCode2021.Types;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2021.Days
 {
@@ -80,49 +77,34 @@ namespace AdventOfCode2021.Days
 
 			public int MinRisk { get; private set; }
 
-			public void FindPath() => A_Star();
-
-			private static List<Point> RestorePath(Dictionary<Point, Point> CameFrom, Point Current)
+			public void FindPath()
 			{
-				List<Point> Total = new() { Current };
-				while (CameFrom.ContainsKey(Current))
-				{
-					Current = CameFrom[Current];
-					Total.Insert(0, Current);
-				}
-				return Total;
-			}
-
-			private List<Point> A_Star()
-			{
-				HashSet<Point> Open = new() { Start };
+				SortedSet<PointF> Open = new(new PointFComparer()) { new PointF(Start, H(Start)) };
 				DefaultDictionary<Point, int> GScore = new(10000);
-				GScore[Start] = 0;
 				DefaultDictionary<Point, int> FScore = new(10000);
+				GScore[Start] = 0;
 				FScore[Start] = H(Start);
-
-				Dictionary<Point, Point> CameFrom = new();
 
 				while (Open.Count > 0)
 				{
-					var M = Open.Min(P => FScore[P]);
-					var Current = Open.Where(P => FScore[P] == M).First();
+					var CurrentF = Open.Min;
+					var Current = CurrentF.Point;
 					if (Current == End)
 					{
 						MinRisk = GScore[Current];
-						return RestorePath(CameFrom, Current);
+						return;
 					}
 
-					Open.Remove(Current);
+					Open.Remove(CurrentF);
 					foreach (var P in Neighbors(Current))
 					{
 						var G = GScore[Current] + D(P);
 						if (G < GScore[P])
 						{
-							CameFrom[P] = Current;
 							GScore[P] = G;
 							FScore[P] = G + H(P);
-							if (!Open.Contains(P)) { Open.Add(P); }
+							var F = new PointF(P, FScore[P]);
+							if (!Open.Contains(F)) { Open.Add(F); }
 						}
 					}
 				}
@@ -145,10 +127,21 @@ namespace AdventOfCode2021.Days
 			}
 		}
 		private record Point(int X, int Y);
-		private record FPoint(int Score, Point Point);
-		private class PointComparer : IComparer<FPoint>
+		private record PointF(Point Point, int F);
+		private class PointFComparer : IComparer<PointF>
 		{
-			public int Compare(FPoint x, FPoint y) => Math.Sign(x.Score - y.Score);
+			public int Compare(PointF x, PointF y)
+			{
+				Point PX = x.Point, PY = y.Point;
+				if (PX.X == PY.X && PX.Y == PY.Y) { return 0; }
+
+				var D = x.F - y.F;
+				if (D != 0) { return D; }
+
+				var dX = PX.X - PY.X;
+				if (dX != 0) { return dX; }
+				return PX.Y - PY.Y;
+			}
 		}
 	}
 }
