@@ -59,7 +59,7 @@ namespace AdventOfCode2021.Days
 					Number += Group[1..];
 					if (Group[0] == '0') { break; }
 				}
-				return (new BITSPacket(Version, Type, Convert.ToInt64(Number, 2)), Bits);
+				return (new BITSPacket(Version, Type, Convert.ToInt64(Number, 2), new List<BITSPacket>()), Bits);
 			}
 			//SubPackets
 			var Packets = new List<BITSPacket>();
@@ -89,35 +89,26 @@ namespace AdventOfCode2021.Days
 					Packets.Add(Packet);
 				}
 			}
-			return (new BITSPacket(Version, Type, Packets), Bits);
+			return (new BITSPacket(Version, Type, 0L, Packets), Bits);
 		}
 
 		private static BITSPacket DecodePacket(string packet) => Decode(HexDecoder.Decode(packet)).Packet;
 
 		private static long Evaluate(BITSPacket packet)
 		{
-			var T = packet.Type;
-			if (T == 4) { return packet.Number; }
-
-			var Sub = packet.Packets;
-			var Values = Sub.Select(P => Evaluate(P)).ToList();
-			switch (T)
+			var Values = packet.Packets.Select(P => Evaluate(P)).ToList();
+			return packet.Type switch
 			{
-				case 0: return Values.Sum();
-				case 1:
-					{
-						long Value = 1;
-						foreach (var V in Values) { Value *= V; }
-						return Value;
-					}
-
-				case 2: return Values.Min();
-				case 3: return Values.Max();
-				case 5: return Values[0] > Values[1] ? 1 : 0;
-				case 6: return Values[0] < Values[1] ? 1 : 0;
-				case 7: return Values[0] == Values[1] ? 1 : 0;
-				default: return 0;
-			}
+				0 => Values.Sum(),
+				1 => Values.Aggregate(1L, (a, x) => a * x),
+				2 => Values.Min(),
+				3 => Values.Max(),
+				4 => packet.Number,
+				5 => Values[0] > Values[1] ? 1 : 0,
+				6 => Values[0] < Values[1] ? 1 : 0,
+				7 => Values[0] == Values[1] ? 1 : 0,
+				_ => 0,
+			};
 		}
 
 		private static int SumVersion(BITSPacket packet)
@@ -135,23 +126,6 @@ namespace AdventOfCode2021.Days
 			return Sum;
 		}
 
-		private class BITSPacket
-		{
-			public readonly List<BITSPacket> Packets = new();
-
-			public BITSPacket(int version, int type, long number) : this(version, type) => Number = number;
-
-			public BITSPacket(int version, int type, List<BITSPacket> packets) : this(version, type) => Packets = packets;
-
-			private BITSPacket(int version, int type)
-			{
-				Version = version;
-				Type = type;
-			}
-
-			public long Number { get; private set; }
-			public int Type { get; private set; }
-			public int Version { get; private set; }
-		}
+		private record BITSPacket(int Version, int Type, long Number, List<BITSPacket> Packets);
 	}
 }
