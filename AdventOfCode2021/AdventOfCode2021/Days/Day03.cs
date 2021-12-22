@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace AdventOfCode2021.Days
 {
@@ -48,14 +49,14 @@ namespace AdventOfCode2021.Days
 					Count[i].Add(Bits[i]);
 				}
 			}
-			string Gamma = "", Epsilon = "";
+			StringBuilder Gamma = new(), Epsilon = new();
 			foreach (var KV in Count)
 			{
-				Gamma += KV.Value.Common;
-				Epsilon += KV.Value.Uncommon;
+				Gamma.Append(KV.Value.Common);
+				Epsilon.Append(KV.Value.Uncommon);
 			}
 
-			return Convert.ToInt32(Gamma, 2) * Convert.ToInt32(Epsilon, 2);
+			return Convert.ToInt32(Gamma.ToString(), 2) * Convert.ToInt32(Epsilon.ToString(), 2);
 		}
 
 		private static int CalculateSupport(List<string> BitsList)

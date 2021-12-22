@@ -47,19 +47,19 @@ namespace AdventOfCode2021.Days
 
 		private static bool Intersects(Cuboid a, Cuboid b) => a.MinX <= b.MaxX && a.MaxX >= b.MinX && a.MinY <= b.MaxY && a.MaxY >= b.MinY && a.MinZ <= b.MaxZ && a.MaxZ >= b.MinZ;
 
-		private static List<Cuboid> Substract(Cuboid a, Cuboid b)
+		private static List<Cuboid> Substract(Cuboid C1, Cuboid C2)
 		{
-			if (Contains(b, a)) { return new List<Cuboid>(); }
+			if (Contains(C2, C1)) { return new List<Cuboid>(); }
 
-			if (!Intersects(a, b)) { return new List<Cuboid>(new[] { a }); }
+			if (!Intersects(C1, C2)) { return new List<Cuboid>(new[] { C1 }); }
 
-			var XSplits = new[] { b.MinX, b.MaxX }.Where((x) => a.MinX < x && x < a.MaxX);
-			var YSplits = new[] { b.MinY, b.MaxY }.Where((y) => a.MinY < y && y < a.MaxY);
-			var ZSplits = new[] { b.MinZ, b.MaxZ }.Where((z) => a.MinZ < z && z < a.MaxZ);
+			var XSplits = new[] { C2.MinX, C2.MaxX }.Where((x) => C1.MinX < x && x < C1.MaxX);
+			var YSplits = new[] { C2.MinY, C2.MaxY }.Where((y) => C1.MinY < y && y < C1.MaxY);
+			var ZSplits = new[] { C2.MinZ, C2.MaxZ }.Where((z) => C1.MinZ < z && z < C1.MaxZ);
 
-			var XV = XSplits.Prepend(a.MinX).Append(a.MaxX).ToList();
-			var YV = YSplits.Prepend(a.MinY).Append(a.MaxY).ToList();
-			var ZV = ZSplits.Prepend(a.MinZ).Append(a.MaxZ).ToList();
+			var XV = XSplits.Prepend(C1.MinX).Append(C1.MaxX).ToList();
+			var YV = YSplits.Prepend(C1.MinY).Append(C1.MaxY).ToList();
+			var ZV = ZSplits.Prepend(C1.MinZ).Append(C1.MaxZ).ToList();
 
 			var Splitted = new List<Cuboid>();
 
@@ -74,7 +74,7 @@ namespace AdventOfCode2021.Days
 				}
 			}
 
-			return Splitted.Where((c) => !Contains(b, c)).ToList();
+			return Splitted.Where((c) => !Contains(C2, c)).ToList();
 		}
 
 		private class Reactor

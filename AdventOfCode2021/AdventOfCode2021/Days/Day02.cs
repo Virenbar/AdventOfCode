@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace AdventOfCode2021.Days
 {
@@ -47,6 +48,7 @@ namespace AdventOfCode2021.Days
 					case "forward": P.HPos += Value; break;
 					case "down": P.Depth += Value; break;
 					case "up": P.Depth -= Value; break;
+					default: throw new InvalidOperationException();
 				}
 			}
 			return P.Depth * P.HPos;

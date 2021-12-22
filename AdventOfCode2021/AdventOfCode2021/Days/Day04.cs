@@ -40,8 +40,8 @@ namespace AdventOfCode2021.Days
 		{
 			private readonly List<Board> Boards;
 			private readonly List<int> Numbers;
-			private int LastNumber = 0;
-			private Board Winner = null;
+			private int LastNumber;
+			private Board Winner;
 
 			public Bingo(string bingo)
 			{
@@ -85,7 +85,7 @@ namespace AdventOfCode2021.Days
 
 			public Board(string board)
 			{
-				var Numbers = board.Split(new string[] { "\r\n", " " }, StringSplitOptions.RemoveEmptyEntries);
+				var Numbers = board.Split(new[] { "\r\n", " " }, StringSplitOptions.RemoveEmptyEntries);
 				for (int r = 0; r < 5; r++)
 				{
 					for (int c = 0; c < 5; c++)

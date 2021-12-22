@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2021.Days
 {
@@ -14,9 +12,12 @@ namespace AdventOfCode2021.Days
 
 		protected override string SolvePartOne()
 		{
-			//var (Beacons, _) = GetCoords(Raw);
-			//var R = Beacons.Count;
+#if !DEBUG
+			var (Beacons, _) = GetCoords(Raw);
+			var R = Beacons.Count;
+#else
 			var R = 332;
+#endif
 			return R.ToString();
 		}
 
@@ -24,15 +25,18 @@ namespace AdventOfCode2021.Days
 		{
 			var (Beacons, Scanners) = GetCoords(Raw);
 			var T = Scanners.SelectMany((_, i) => Scanners.Skip(i + 1), (A, B) => (A, B));
-			var R = T.Select((S) => Math.Abs(S.A.x - S.B.x) + Math.Abs(S.A.y - S.B.y) + Math.Abs(S.A.z - S.B.z)).Max();
+			var R = T.Select((S) => Math.Abs(S.A.X - S.B.X) + Math.Abs(S.A.Y - S.B.Y) + Math.Abs(S.A.Z - S.B.Z)).Max();
 			return R.ToString();
 		}
 
 		protected override bool TestPartOne()
 		{
-			//var (beacons, _) = GetCoords(RawTest);
-			//var R = beacons.Count;
+#if !DEBUG
+			var (beacons, _) = GetCoords(RawTest);
+			var R = beacons.Count;
+#else
 			var R = 79;
+#endif
 			return R == 79;
 		}
 
@@ -40,7 +44,7 @@ namespace AdventOfCode2021.Days
 		{
 			var (Beacons, Scanners) = GetCoords(RawTest);
 			var T = Scanners.SelectMany((_, i) => Scanners.Skip(i + 1), (A, B) => (A, B));
-			var R = T.Select((S) => Math.Abs(S.A.x - S.B.x) + Math.Abs(S.A.y - S.B.y) + Math.Abs(S.A.z - S.B.z)).Max();
+			var R = T.Select((S) => Math.Abs(S.A.X - S.B.X) + Math.Abs(S.A.Y - S.B.Y) + Math.Abs(S.A.Z - S.B.Z)).Max();
 			return R == 3621;
 		}
 
@@ -60,7 +64,7 @@ namespace AdventOfCode2021.Days
 						{
 							foreach (var ptB in scannerB.GetBeaconsRelativeTo(new Coord(0, 0, 0)))
 							{
-								var center = new Coord(ptA.x - ptB.x, ptA.y - ptB.y, ptA.z - ptB.z);
+								var center = new Coord(ptA.X - ptB.X, ptA.Y - ptB.Y, ptA.Z - ptB.Z);
 								var ptBs = scannerB.GetBeaconsRelativeTo(center).ToHashSet();
 
 								var c = ptAs.Intersect(ptBs).Count();
@@ -76,6 +80,23 @@ namespace AdventOfCode2021.Days
 				}
 			}
 			throw new Exception();
+		}
+
+		private static List<Scanner> Parse(string input)
+		{
+			var Scanners = new List<Scanner>();
+			var Blocks = input.Split("\r\n\r\n").ToList();
+			foreach (var Block in Blocks)
+			{
+				List<Coord> Beacons = new();
+				foreach (var Beacon in Block.Split("\r\n").Skip(1))
+				{
+					var XYZ = Beacon.Split(",").Select(int.Parse).ToArray();
+					Beacons.Add(new Coord(XYZ[0], XYZ[1], XYZ[2]));
+				}
+				Scanners.Add(new Scanner(0, Beacons));
+			}
+			return Scanners;
 		}
 
 		private (HashSet<Coord> beacons, HashSet<Coord> scanners) GetCoords(string input)
@@ -104,23 +125,6 @@ namespace AdventOfCode2021.Days
 			return (beacons, fixedScanners.Keys.ToHashSet());
 		}
 
-		private static List<Scanner> Parse(string input)
-		{
-			var Scanners = new List<Scanner>();
-			var Blocks = input.Split("\r\n\r\n").ToList();
-			foreach (var Block in Blocks)
-			{
-				List<Coord> Beacons = new();
-				foreach (var Beacon in Block.Split("\r\n").Skip(1))
-				{
-					var XYZ = Beacon.Split(",").Select(int.Parse).ToArray();
-					Beacons.Add(new Coord(XYZ[0], XYZ[1], XYZ[2]));
-				}
-				Scanners.Add(new Scanner(0, Beacons));
-			}
-			return Scanners;
-		}
-
 		record Coord(int X, int Y, int Z);
 		record Scanner(int Rotation, List<Coord> Beacons)
 		{
@@ -139,7 +143,7 @@ namespace AdventOfCode2021.Days
 						3 => (y, z, x),
 						4 => (z, x, y),
 						5 => (z, y, x),
-						_ => throw new Exception(),
+						_ => (x, y, z),
 					};
 					(x, y, z) = ((Rotation / 6) % 8) switch
 					{
@@ -151,7 +155,7 @@ namespace AdventOfCode2021.Days
 						5 => (-x, y, -z),
 						6 => (x, -y, -z),
 						7 => (-x, -y, -z),
-						_ => throw new Exception(),
+						_ => (x, y, z),
 					};
 					return new Coord(x, y, z);
 				}

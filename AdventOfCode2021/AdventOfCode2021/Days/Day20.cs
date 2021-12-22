@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace AdventOfCode2021.Days
 {
@@ -94,15 +95,15 @@ namespace AdventOfCode2021.Days
 
 			private char EnhancePixel(Pixel P)
 			{
-				string Index = "";
+				StringBuilder Index = new();
 				for (int Y = -1; Y <= 1; Y++)
 				{
 					for (int X = -1; X <= 1; X++)
 					{
-						Index += this[new Pixel(P.X + X, P.Y + Y)];
+						Index.Append(this[new Pixel(P.X + X, P.Y + Y)]);
 					}
 				}
-				var T = string.Concat(Index.Select(C => C == '#' ? '1' : '0'));
+				var T = string.Concat(Index.ToString().Select(C => C == '#' ? '1' : '0'));
 				var I = Convert.ToInt32(T, 2);
 				return Algorithm[I];
 			}

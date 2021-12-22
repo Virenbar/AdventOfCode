@@ -81,26 +81,26 @@ namespace AdventOfCode2021.Days
 
 			public static void ExplodeRight(FishNumber number)
 			{
-				FishNumber Parent = number.Parent;
+				FishNumber P = number.Parent;
 				FishNumber temp = number;
-				while (Parent != null)
+				while (P != null)
 				{
-					if (Parent.Right != temp)
+					if (P.Right != temp)
 					{
-						Parent = Parent.Right;
+						P = P.Right;
 						break;
 					}
-					temp = Parent;
-					Parent = Parent.Parent;
+					temp = P;
+					P = P.Parent;
 				}
-				while (Parent != null)
+				while (P != null)
 				{
-					if (Parent.IsValue())
+					if (P.IsValue())
 					{
-						Parent.Value += number.Right.Value;
+						P.Value += number.Right.Value;
 						break;
 					}
-					Parent = Parent.Left;
+					P = P.Left;
 				}
 				number.Right = null;
 			}
@@ -216,14 +216,14 @@ namespace AdventOfCode2021.Days
 			public FishNumber ReadSnailfish(FishNumber parent = null)
 			{
 				FishNumber Number = new(0) { Parent = parent };
-				while (!(index >= data.Length))
+				while (index < data.Length)
 				{
 					switch (data[index])
 					{
 						case '[': index++; Number.Left = ReadSnailfish(Number); break;
 						case ',': index++; Number.Right = ReadSnailfish(Number); break;
 						case ']': return Number;
-						default: Number.Value = int.Parse(data[index].ToString()); ; return Number;
+						default: Number.Value = int.Parse(data[index].ToString()); return Number;
 					}
 					index++;
 				}

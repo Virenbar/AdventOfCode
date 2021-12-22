@@ -75,7 +75,7 @@ namespace AdventOfCode2021.Days
 			{
 				foreach (var (LP, _) in LowPoints)
 				{
-					if (Basins.Any(B => B.Contains(LP))) { continue; };
+					if (Basins.Any(B => B.Contains(LP))) { continue; }
 					HashSet<Point> Basin = new();
 					List<Point> NewPoints = new() { LP };
 					while (NewPoints.Count > 0)
@@ -95,7 +95,7 @@ namespace AdventOfCode2021.Days
 				{
 					var Adjacent = GetAdjacent(P);
 					var IsLow = Adjacent.All(A => this[A] > H);
-					if (IsLow) { LowPoints[P] = H; };
+					if (IsLow) { LowPoints[P] = H; }
 				}
 			}
 

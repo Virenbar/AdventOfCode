@@ -7,7 +7,7 @@ namespace AdventOfCode2021.Days
 {
 	public class Day05 : BaseDay
 	{
-		private static readonly Regex R = new(@"(?<x1>\d+),(?<y1>\d+) -> (?<x2>\d+),(?<y2>\d+)");
+		private static readonly Regex VentR = new(@"(?<x1>\d+),(?<y1>\d+) -> (?<x2>\d+),(?<y2>\d+)");
 
 		#region Overrides
 
@@ -47,7 +47,7 @@ namespace AdventOfCode2021.Days
 			{
 				foreach (var vent in vents)
 				{
-					var M = R.Match(vent);
+					var M = VentR.Match(vent);
 					var X1 = int.Parse(M.Groups["x1"].Value);
 					var Y1 = int.Parse(M.Groups["y1"].Value);
 					var X2 = int.Parse(M.Groups["x2"].Value);

@@ -42,7 +42,7 @@ namespace AdventOfCode2021.Days
 
 		private class DeterministicDice
 		{
-			private int Value = 0;
+			private int Value;
 			public int RollCount { get; private set; }
 
 			public int Roll()
@@ -102,9 +102,9 @@ namespace AdventOfCode2021.Days
 
 			private (long P1, long P2) PlayTurn(Player P1, Player P2, int TurnCount)
 			{
-				if (P1.Score >= 21 || P2.Score >= 21) return P1.Score > P2.Score ? (1, 0) : (0, 1);
+				if (P1.Score >= 21 || P2.Score >= 21) { return P1.Score > P2.Score ? (1, 0) : (0, 1); }
 
-				if (TurnCount % 2 == 1)
+				if (TurnCount % 2 != 0)
 				{
 					var Results = QuantumMoves.Select(M => (Result: PlayTurn(P1.Move(M.Move), P2, TurnCount + 1), M.Count));
 					var Result = Results.Aggregate((P1: 0L, P2: 0L), (A, T) => (A.P1 + T.Result.P1 * T.Count, A.P2 + T.Result.P2 * T.Count));

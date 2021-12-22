@@ -78,14 +78,14 @@ namespace AdventOfCode2021.Days
 			private void Launch(int dX, int dY)
 			{
 				int X = 0, Y = 0;
-				int MaxY = 0;
+				int MY = 0;
 
 				while (X <= X2 && Y >= Y1)
 				{
 					X += dX;
 					Y += dY;
 
-					MaxY = Math.Max(MaxY, Y);
+					MY = Math.Max(MY, Y);
 
 					if (dX > 0) { dX--; }
 					else if (dX < 0) { dX++; }
@@ -94,7 +94,7 @@ namespace AdventOfCode2021.Days
 
 					if ((X >= X1 && X <= X2) && (Y >= Y1 && Y <= Y2))
 					{
-						MaxYList.Add(MaxY);
+						MaxYList.Add(MY);
 						HitCount++;
 						return;
 					}

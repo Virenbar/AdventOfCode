@@ -114,8 +114,8 @@ namespace AdventOfCode2021.Days
 				Stack.Clear();
 				foreach (char C in Line)
 				{
-					var Score = CheckChar(C);
-					if (Score != 0) { return 0; }
+					var S = CheckChar(C);
+					if (S != 0) { return 0; }
 				}
 				return Stack.Aggregate(0L, (S, C) => S * 5 + CharScore(C));
 			}

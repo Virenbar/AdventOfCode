@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace AdventOfCode2021.Days
 {
@@ -51,15 +52,15 @@ namespace AdventOfCode2021.Days
 			//Literal
 			if (Type == 4)
 			{
-				var Number = "";
+				StringBuilder Number = new();
 				while (true)
 				{
 					var Group = Bits[..5];
 					Bits = Bits[5..];
-					Number += Group[1..];
+					Number.Append(Group[1..]);
 					if (Group[0] == '0') { break; }
 				}
-				return (new BITSPacket(Version, Type, Convert.ToInt64(Number, 2), new List<BITSPacket>()), Bits);
+				return (new BITSPacket(Version, Type, Convert.ToInt64(Number.ToString(), 2), new List<BITSPacket>()), Bits);
 			}
 			//SubPackets
 			var Packets = new List<BITSPacket>();

@@ -44,7 +44,6 @@ namespace AdventOfCode2021.Days
 
 		private static string TryRead(string FilePath)
 		{
-			//FilePath = Path.GetFullPath(FilePath);
 			if (File.Exists(FilePath)) { return File.ReadAllText(FilePath); }
 			return "";
 		}

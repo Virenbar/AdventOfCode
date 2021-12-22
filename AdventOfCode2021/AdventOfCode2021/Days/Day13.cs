@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace AdventOfCode2021.Days
 {
@@ -73,10 +74,10 @@ namespace AdventOfCode2021.Days
 				var MY = Dots.Max(D => D.Y) + 1;
 				for (int Y = 0; Y < MY; Y++)
 				{
-					var L = "";
+					StringBuilder L = new();
 					for (int X = 0; X < MX; X++)
 					{
-						L += Dots.Contains(new Point(X, Y)) ? '#' : '.';
+						L.Append(Dots.Contains(new Point(X, Y)) ? '#' : '.');
 					}
 					Console.WriteLine(L);
 				}

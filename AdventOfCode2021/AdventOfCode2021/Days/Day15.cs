@@ -108,7 +108,6 @@ namespace AdventOfCode2021.Days
 						}
 					}
 				}
-				throw new Exception();
 			}
 
 			private int D(Point P) => Risks[P];

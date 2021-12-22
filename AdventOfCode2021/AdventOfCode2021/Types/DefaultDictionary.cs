@@ -6,9 +6,10 @@ namespace AdventOfCode2021.Types
 	{
 		private readonly TValue Default = default;
 
-		public DefaultDictionary() : base() { }
+		public DefaultDictionary()
+		{ }
 
-		public DefaultDictionary(TValue defaultValue) : base() => Default = defaultValue;
+		public DefaultDictionary(TValue defaultValue) => Default = defaultValue;
 
 		public new TValue this[TKey key]
 		{
