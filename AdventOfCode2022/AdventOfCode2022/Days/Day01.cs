@@ -8,36 +8,38 @@
 
         protected override string SolvePartOne()
         {
-            var R = CalculatePartOne(Lines);
+            var R = FindMaxCalories(Raw);
             return R.ToString();
         }
 
         protected override string SolvePartTwo()
         {
-            var R = CalculatePartTwo(Lines);
+            var R = FindMaxCaloriesTop3(Raw);
             return R.ToString();
         }
 
         protected override bool TestPartOne()
         {
-            var R = CalculatePartOne(LinesTest);
-            return R == 0;
+            var R = FindMaxCalories(RawTest);
+            return R == 24000;
         }
 
         protected override bool TestPartTwo()
         {
-            var R = CalculatePartTwo(LinesTest);
-            return R == 0;
+            var R = FindMaxCaloriesTop3(RawTest);
+            return R == 45000;
         }
 
-        private static int CalculatePartOne(List<string> _)
+        private static int FindMaxCalories(string items)
         {
-            return 0;
+            var calories = items.SplitBlocksToList().Select(E => E.SplitToList().Select(int.Parse).Sum());
+            return calories.Max();
         }
 
-        private static int CalculatePartTwo(List<string> _)
+        private static int FindMaxCaloriesTop3(string items)
         {
-            return 0;
+            var calories = items.SplitBlocksToList().Select(E => E.SplitToList().Select(int.Parse).Sum());
+            return calories.OrderByDescending(C => C).Take(3).Sum();
         }
 
         #endregion Overrides
