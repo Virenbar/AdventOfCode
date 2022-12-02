@@ -30,6 +30,8 @@
             return R == 45000;
         }
 
+        #endregion Overrides
+
         private static int FindMaxCalories(string items)
         {
             var calories = items.SplitBlocksToList().Select(E => E.SplitToList().Select(int.Parse).Sum());
@@ -41,7 +43,5 @@
             var calories = items.SplitBlocksToList().Select(E => E.SplitToList().Select(int.Parse).Sum());
             return calories.OrderByDescending(C => C).Take(3).Sum();
         }
-
-        #endregion Overrides
     }
 }
