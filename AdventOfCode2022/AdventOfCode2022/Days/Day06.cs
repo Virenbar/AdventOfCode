@@ -8,38 +8,64 @@
 
         protected override string SolvePartOne()
         {
-            var R = CalculatePartOne(Lines);
+            var R = FindPacket(Raw);
             return R.ToString();
         }
 
         protected override string SolvePartTwo()
         {
-            var R = CalculatePartTwo(Lines);
+            var R = FindMessage(Raw);
             return R.ToString();
         }
 
         protected override bool TestPartOne()
         {
-            var R = CalculatePartOne(LinesTest);
-            return R == 0;
+            var R = FindPacket(RawTest);
+            return R == 7;
         }
 
         protected override bool TestPartTwo()
         {
-            var R = CalculatePartTwo(LinesTest);
-            return R == 0;
-        }
-
-        private static int CalculatePartOne(List<string> _)
-        {
-            return 0;
-        }
-
-        private static int CalculatePartTwo(List<string> _)
-        {
-            return 0;
+            var R = FindMessage(RawTest);
+            return R == 19;
         }
 
         #endregion Overrides
+
+        private static int FindMessage(string dataStream)
+        {
+            var Buffer = new Buffer(dataStream);
+            return Buffer.FindMessageStart();
+        }
+
+        private static int FindPacket(string dataStream)
+        {
+            var Buffer = new Buffer(dataStream);
+            return Buffer.FindPacketStart();
+        }
+
+        private class Buffer
+        {
+            private readonly string DataStream;
+
+            public Buffer(string stream)
+            {
+                DataStream = stream;
+            }
+
+            public int FindMessageStart() => FindMarker(14);
+
+            public int FindPacketStart() => FindMarker(4);
+
+            private int FindMarker(int length)
+            {
+                for (int i = 0; i < DataStream.Length; i++)
+                {
+                    var Marker = DataStream[i..(i + length)];
+                    if (Marker.ToHashSet().Count == length) { return i + length; }
+                }
+                return DataStream.Length;
+            }
+        }
     }
 }
