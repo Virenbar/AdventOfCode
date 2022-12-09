@@ -6,7 +6,7 @@ namespace AdventOfCode2022
     {
         private static void Main()
         {
-            BaseDay Day = new Day08();
+            BaseDay Day = new Day09();
             var (PartOne, PartTwo) = Day.Solve();
             Console.WriteLine(PartOne);
             Console.WriteLine(PartTwo);
