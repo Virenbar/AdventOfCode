@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 	  <PackageReference Include="morelinq" Version="3.3.2" />
+	  <PackageReference Include="SuperLinq" Version="4.5.0" />
 	</ItemGroup>
 
 </Project>
