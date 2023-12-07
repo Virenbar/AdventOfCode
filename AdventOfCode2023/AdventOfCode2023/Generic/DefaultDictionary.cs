@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2023.Types
+﻿namespace AdventOfCode2023.Generic
 {
     internal class DefaultDictionary<TKey, TValue> : Dictionary<TKey, TValue> where TValue : struct
     {

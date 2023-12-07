@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2023.Generic
+﻿namespace AdventOfCode2023.Helpers
 {
     internal static class HexDecoder
     {
