@@ -17,6 +17,14 @@
 
         public static List<string> SplitToList(this string input) => input.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();
 
+        public static (List<string> ListOne, List<string> ListTwo) SplitToTwoList(this string input)
+        {
+            var I = input.Split(new[] { "\r\n\r\n", "\r\r", "\n\n" }, StringSplitOptions.None);
+            var P1 = I[0].SplitToList();
+            var P2 = I[1].SplitToList();
+            return (P1, P2);
+        }
+
         public static List<int> ToIntList(this string input) => input.Split(',').Select(int.Parse).ToList();
 
         public static List<int> ToIntList(this List<string> input) => input.Select(int.Parse).ToList();
