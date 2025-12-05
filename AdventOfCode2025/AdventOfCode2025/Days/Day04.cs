@@ -1,45 +1,65 @@
 ﻿namespace AdventOfCode2025.Days
 {
-    public class Day04 : BaseDay
+    public class Day04 : TDay
     {
-        #region Overrides
-
         public Day04() : base(4) { }
 
-        protected override string SolvePartOne()
+        protected override long TestOneResult => 13;
+        protected override long TestTwoResult => 43;
+
+        protected override long CalculatePartOne(List<string> rolls)
         {
-            var R = CalculatePartOne(Lines);
-            return R.ToString();
+            var Rolls = new PaperRolls(rolls);
+            return Rolls.CountAcceseble();
         }
 
-        protected override string SolvePartTwo()
+        protected override long CalculatePartTwo(List<string> rolls)
         {
-            var R = CalculatePartTwo(Lines);
-            return R.ToString();
+            var Rolls = new PaperRolls(rolls);
+            return Rolls.CountRemoved();
         }
 
-        protected override bool TestPartOne()
+        private class PaperRolls
         {
-            var R = CalculatePartOne(LinesTest);
-            return R == 0;
-        }
+            private readonly List<(int DX, int DY)> Offsets;
+            private readonly HashSet<Roll> Rolls = new();
 
-        protected override bool TestPartTwo()
-        {
-            var R = CalculatePartTwo(LinesTest);
-            return R == 0;
-        }
+            public PaperRolls(List<string> rolls)
+            {
+                Offsets = new List<(int DX, int DY)> { (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1) };
 
-        #endregion Overrides
+                for (int x = 0; x < rolls.Count; x++)
+                {
+                    for (int y = 0; y < rolls[x].Length; y++)
+                    {
+                        if (rolls[x][y] == '@') Rolls.Add(new(x, y));
+                    }
+                }
+            }
 
-        private static int CalculatePartOne(List<string> _)
-        {
-            return 0;
-        }
+            public int CountAcceseble()
+            {
+                return Rolls.Count(IsAcceseble);
+            }
 
-        private static int CalculatePartTwo(List<string> _)
-        {
-            return 0;
+            public int CountRemoved()
+            {
+                var total = 0;
+                while (true)
+                {
+                    var removed = Rolls.RemoveWhere(IsAcceseble);
+                    total += removed;
+                    if (removed == 0) break;
+                }
+                return total;
+            }
+
+            private bool IsAcceseble(Roll roll)
+            {
+                return Offsets.Count(O => Rolls.Contains(new(roll.X + O.DX, roll.Y + O.DY))) < 4;
+            }
+
+            private record Roll(int X, int Y);
         }
     }
 }
