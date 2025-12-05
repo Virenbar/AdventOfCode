@@ -2,7 +2,7 @@
 
 namespace AdventOfCode2025.Days
 {
-    public abstract class BaseDay
+    public abstract class BaseDay : IDay
     {
         protected List<string> Lines;
         protected List<string> LinesTest, LinesTestA;
