@@ -6,7 +6,7 @@ namespace AdventOfCode2025
     {
         private static void Main()
         {
-            IDay Day = new Day06();
+            IDay Day = new Day07();
             var (PartOne, PartTwo) = Day.Solve();
             Console.WriteLine(PartOne);
             Console.WriteLine(PartTwo);
