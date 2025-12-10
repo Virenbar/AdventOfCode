@@ -13,6 +13,15 @@
             return true;
         }
 
+        public static IEnumerable<(T First, T Second)> Pairs<T>(this List<T> list)
+        {
+            var N = list.Count;
+            var pairs = Enumerable.Range(0, N - 1)
+                .SelectMany(i => Enumerable.Range(i + 1, N - (i + 1))
+                    .Select(j => (list[i], list[j])));
+            return pairs;
+        }
+
         public static List<string> SplitBlocksToList(this string input) => input.Split(new[] { "\r\n\r\n", "\r\r", "\n\n" }, StringSplitOptions.None).ToList();
 
         public static List<string> SplitToList(this string input) => input.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();
