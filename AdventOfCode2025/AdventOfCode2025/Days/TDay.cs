@@ -10,27 +10,28 @@ namespace AdventOfCode2025.Days
     public abstract class TDay<T> : IDay where T : class
     {
         protected T Input;
-        protected T InputTest;
         private readonly Stopwatch SW = new();
 
         public TDay(int day) => Day = day;
 
         public int Day { get; private set; }
+        protected virtual bool AlternativeTestTwo => false;
         protected abstract long TestOneResult { get; }
         protected abstract long TestTwoResult { get; }
 
         public (string PartOne, string PartTwo) Solve()
         {
-            LoadDay();
-            var T1 = CalculatePartOne(InputTest) == TestOneResult;
-            var T2 = CalculatePartTwo(InputTest) == TestTwoResult;
+            LoadInput(InputType.Test);
+            var T1 = CalculatePartOne(Input) == TestOneResult;
+            if (AlternativeTestTwo) { LoadInput(InputType.TestA); }
+            var T2 = CalculatePartTwo(Input) == TestTwoResult;
             if (!(T1 && T2))
             {
                 var P1 = T1 ? "passed" : "failed";
                 var P2 = T2 ? "passed" : "failed";
                 return ($"Test One: {P1}", $"Test Two: {P2}");
             }
-
+            LoadInput(InputType.Normal);
             var A1 = SolvePart(CalculatePartOne);
             var A2 = SolvePart(CalculatePartTwo);
             return ($"Part One: {A1})", $"Part Two: {A2})");
@@ -57,17 +58,15 @@ namespace AdventOfCode2025.Days
             };
         }
 
-        private void LoadDay()
+        private void LoadInput(InputType type)
         {
             if (typeof(T) == typeof(string))
             {
-                Input = (T)(object)TryRead(InputPath());
-                InputTest = (T)(object)TryRead(InputPath(InputType.Test));
+                Input = (T)(object)TryRead(InputPath(type));
             }
             else if (typeof(T) == typeof(List<string>))
             {
-                Input = (T)(object)TryRead(InputPath()).SplitToList();
-                InputTest = (T)(object)TryRead(InputPath(InputType.Test)).SplitToList();
+                Input = (T)(object)TryRead(InputPath(type)).SplitToList();
             }
         }
 
