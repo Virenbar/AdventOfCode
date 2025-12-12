@@ -1,7 +1,15 @@
-﻿namespace AdventOfCode2025
+﻿using System.Numerics;
+
+namespace AdventOfCode2025
 {
     public static class Extensions
     {
+        public static bool Between<T>(this T value, T min, T max) where T : IBinaryNumber<T>
+        {
+            if (min > max) (min, max) = (max, min);
+            return min <= value && value <= max;
+        }
+
         public static bool IsAllUnique(this IEnumerable<char> chars)
         {
             var Chars = new HashSet<char>();
