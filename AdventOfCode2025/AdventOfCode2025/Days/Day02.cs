@@ -1,47 +1,21 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace AdventOfCode2025.Days
 {
-    public partial class Day02 : BaseDay
+    public partial class Day02 : TDay<string>
     {
-        #region Overrides
-
         public Day02() : base(2) { }
 
-        protected override string SolvePartOne()
-        {
-            var R = CalculatePartOne(Raw);
-            return R.ToString();
-        }
+        protected override long TestOneResult => 1227775554;
+        protected override long TestTwoResult => 4174379265;
 
-        protected override string SolvePartTwo()
-        {
-            var R = CalculatePartTwo(Raw);
-            return R.ToString();
-        }
-
-        protected override bool TestPartOne()
-        {
-            var R = CalculatePartOne(RawTest);
-            return R == 1227775554;
-        }
-
-        protected override bool TestPartTwo()
-        {
-            var R = CalculatePartTwo(RawTest);
-            return R == 4174379265;
-        }
-
-        #endregion Overrides
-
-        private static long CalculatePartOne(string ranges)
+        protected override long CalculatePartOne(string ranges)
         {
             var Finder = new IDRanges(ranges);
             return Finder.FindInvalid(InvalidID());
         }
 
-        private static long CalculatePartTwo(string ranges)
+        protected override long CalculatePartTwo(string ranges)
         {
             var Finder = new IDRanges(ranges);
             return Finder.FindInvalid(InvalidIDMore());

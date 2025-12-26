@@ -1,45 +1,20 @@
 ﻿namespace AdventOfCode2025.Days
 {
-    public partial class Day01 : BaseDay
+    public partial class Day01 : TDay
     {
-        #region Overrides
-
         public Day01() : base(1) { }
 
-        protected override string SolvePartOne()
-        {
-            var R = CalculatePartOne(Lines);
-            return R.ToString();
-        }
+        protected override long TestOneResult => 3;
+        protected override long TestTwoResult => 6;
 
-        protected override string SolvePartTwo()
-        {
-            var R = CalculatePartTwo(Lines);
-            return R.ToString();
-        }
-
-        protected override bool TestPartOne()
-        {
-            var R = CalculatePartOne(LinesTest);
-            return R == 3;
-        }
-
-        protected override bool TestPartTwo()
-        {
-            var R = CalculatePartTwo(LinesTest);
-            return R == 6;
-        }
-
-        #endregion Overrides
-
-        private static int CalculatePartOne(List<string> sequnce)
+        protected override long CalculatePartOne(List<string> sequnce)
         {
             var dial = new Dial();
             dial.Rotate(sequnce);
             return dial.ZeroCount;
         }
 
-        private static int CalculatePartTwo(List<string> sequnce)
+        protected override long CalculatePartTwo(List<string> sequnce)
         {
             var dial = new Dial();
             dial.Rotate(sequnce);
@@ -67,14 +42,14 @@
                     };
                     Position = position;
                     ZeroClick += zero;
-                    if (Position == 0) ZeroCount++;
+                    if (Position == 0) { ZeroCount++; }
                 }
             }
 
             private static (int, int) NextPosition(int current, int rotation)
             {
                 var position = (current + rotation) % 100;
-                if (position < 0) position += 100;
+                if (position < 0) { position += 100; }
                 var zero = rotation switch
                 {
                     > 0 => (current + rotation) / 100,

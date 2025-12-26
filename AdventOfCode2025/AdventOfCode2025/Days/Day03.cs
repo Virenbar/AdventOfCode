@@ -1,44 +1,19 @@
 ﻿namespace AdventOfCode2025.Days
 {
-    public class Day03 : BaseDay
+    public class Day03 : TDay
     {
-        #region Overrides
-
         public Day03() : base(3) { }
 
-        protected override string SolvePartOne()
-        {
-            var R = CalculatePartOne(Lines);
-            return R.ToString();
-        }
+        protected override long TestOneResult => 357;
+        protected override long TestTwoResult => 3121910778619;
 
-        protected override string SolvePartTwo()
-        {
-            var R = CalculatePartTwo(Lines);
-            return R.ToString();
-        }
-
-        protected override bool TestPartOne()
-        {
-            var R = CalculatePartOne(LinesTest);
-            return R == 357;
-        }
-
-        protected override bool TestPartTwo()
-        {
-            var R = CalculatePartTwo(LinesTest);
-            return R == 3121910778619;
-        }
-
-        #endregion Overrides
-
-        private static int CalculatePartOne(List<string> batteries)
+        protected override long CalculatePartOne(List<string> batteries)
         {
             var Batteries = new Batteries(batteries);
             return Batteries.FindMax();
         }
 
-        private static long CalculatePartTwo(List<string> batteries)
+        protected override long CalculatePartTwo(List<string> batteries)
         {
             var Batteries = new Batteries(batteries);
             return Batteries.FindMaxOverride();
@@ -81,11 +56,8 @@
                                     list.RemoveAt(i);
                                 }
                             }
-
-                            if (!minFound)
-                                list.Remove(list.Min());
+                            if (!minFound) { list.Remove(list.Min()); }
                         }
-
                         return long.Parse(string.Join("", list));
                     }).Sum();
             }

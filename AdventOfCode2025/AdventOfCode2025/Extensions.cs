@@ -6,7 +6,7 @@ namespace AdventOfCode2025
     {
         public static bool Between<T>(this T value, T min, T max) where T : IBinaryNumber<T>
         {
-            if (min > max) (min, max) = (max, min);
+            if (min > max) { (min, max) = (max, min); }
             return min <= value && value <= max;
         }
 

@@ -32,7 +32,7 @@
                 {
                     for (int y = 0; y < rolls[x].Length; y++)
                     {
-                        if (rolls[x][y] == '@') Rolls.Add(new(x, y));
+                        if (rolls[x][y] == '@') { Rolls.Add(new(x, y)); }
                     }
                 }
             }
@@ -49,7 +49,7 @@
                 {
                     var removed = Rolls.RemoveWhere(IsAcceseble);
                     total += removed;
-                    if (removed == 0) break;
+                    if (removed == 0) { break; }
                 }
                 return total;
             }

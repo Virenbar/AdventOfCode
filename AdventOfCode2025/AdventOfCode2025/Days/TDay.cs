@@ -4,7 +4,7 @@ namespace AdventOfCode2025.Days
 {
     public abstract class TDay : TDay<List<string>>
     {
-        public TDay(int day) : base(day) { }
+        protected TDay(int day) : base(day) { }
     }
 
     public abstract class TDay<T> : IDay where T : class
@@ -12,7 +12,7 @@ namespace AdventOfCode2025.Days
         protected T Input;
         private readonly Stopwatch SW = new();
 
-        public TDay(int day) => Day = day;
+        protected TDay(int day) => Day = day;
 
         public int Day { get; private set; }
         protected virtual bool AlternativeTestTwo => false;
@@ -34,7 +34,7 @@ namespace AdventOfCode2025.Days
             LoadInput(InputType.Normal);
             var A1 = SolvePart(CalculatePartOne);
             var A2 = SolvePart(CalculatePartTwo);
-            return ($"Part One: {A1})", $"Part Two: {A2})");
+            return ($"Part One: {A1}", $"Part Two: {A2}");
         }
 
         protected abstract long CalculatePartOne(T input);

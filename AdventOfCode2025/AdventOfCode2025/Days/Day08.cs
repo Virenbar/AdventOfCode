@@ -53,7 +53,7 @@
                         First.Circuit.AddRange(oldCircuit);
                         oldCircuit.ForEach(J => J.Circuit = First.Circuit);
                         Circuits.Remove(oldCircuit);
-                    };
+                    }
 
                     if (++count == limit)
                     {

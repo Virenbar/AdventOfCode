@@ -2,7 +2,7 @@
 
 namespace AdventOfCode2025
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main()
         {

@@ -46,8 +46,8 @@ namespace AdventOfCode2025.Days
                     .OrderBy(R => R.low)
                     .Aggregate((count: 0L, max: 0L), (agr, range) =>
                     {
-                        if (agr.max >= range.low) range.low = agr.max + 1;
-                        if (agr.max >= range.high) range.high = agr.max;
+                        if (agr.max >= range.low) { range.low = agr.max + 1; }
+                        if (agr.max >= range.high) { range.high = agr.max; }
                         agr.count += range.high - range.low + 1;
                         return (agr.count, range.high);
                     }).count;

@@ -24,7 +24,7 @@ namespace AdventOfCode2025.Days
 
         private partial class Rack
         {
-            private Dictionary<string, Device> Devices;
+            private readonly Dictionary<string, Device> Devices;
             private Dictionary<(string name, bool dac, bool), long> M;
 
             public Rack(List<string> devices)

@@ -22,8 +22,8 @@ namespace AdventOfCode2025.Days
 
         private partial class Presents
         {
-            private List<int> Areas;
-            private List<Region> Regions = new();
+            private readonly List<int> Areas;
+            private readonly List<Region> Regions = new();
 
             public Presents(string input)
             {

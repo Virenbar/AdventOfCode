@@ -65,11 +65,9 @@
                 {
                     var op = Operations[i];
                     var numbers = problems[i];
-                    total += op switch
-                    {
-                        '+' => numbers.Aggregate(0L, (A, N) => A + N),
-                        _ => numbers.Aggregate(1L, (A, N) => A * N)
-                    };
+                    total += op == '+'
+                        ? numbers.Aggregate(0L, (A, N) => A + N)
+                        : numbers.Aggregate(1L, (A, N) => A * N);
                 }
                 return total;
             }
